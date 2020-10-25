@@ -4,7 +4,8 @@
 <div class="row">
 	<div class="col-sm-6">
 		<h1 class="monospace">
-			{{ artist.name }}
+			{{ artist.name }} <a href="{{ url_for('index') }}" title="Back to homepage"><i
+				class="fa fa-home pull-right"></i></a>
 		</h1>
 		<p class="subtitle">
 			ID: {{ artist.id }}
