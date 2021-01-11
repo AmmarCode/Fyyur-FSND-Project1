@@ -10,11 +10,6 @@
 		<p class="subtitle">
 			ID: {{ venue.id }}
 		</p>
-		<div class="genres">
-			{% for genre in venue.genres %}
-			<span class="genre">{{ genre }}</span>
-			{% endfor %}
-		</div>
 		<p>
 			<i class="fas fa-globe-americas"></i> {{ venue.city }}, {{ venue.state }}
 		</p>
@@ -56,30 +51,30 @@
 	</div>
 </div>
 <section>
-	<h2 class="monospace">{{ venue.upcoming_shows_count }} Upcoming
-		{% if venue.upcoming_shows_count == 1 %}Show{% else %}Shows{% endif %}</h2>
+	<h2 class="monospace">{{ venue.upcoming_events_count }} Upcoming
+		{% if venue.upcoming_events_count == 1 %}Event{% else %}Events{% endif %}</h2>
 	<div class="row">
-		{%for show in venue.upcoming_shows %}
+		{%for event in venue.upcoming_events %}
 		<div class="col-sm-4">
-			<div class="tile tile-show">
-				<img src="{{ show.artist_image_link }}" alt="Show Artist Image" />
-				<h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
-				<h6>{{ show.start_time|datetime('full') }}</h6>
+			<div class="tile tile-event">
+				<img src="{{ event.speaker_image_link }}" alt="Event Speaker Image" />
+				<h5><a href="/speakers/{{ event.speaker_id }}">{{ event.speaker_name }}</a></h5>
+				<h6>{{ event.start_time|datetime('full') }}</h6>
 			</div>
 		</div>
 		{% endfor %}
 	</div>
 </section>
 <section>
-	<h2 class="monospace">{{ venue.past_shows_count }} Past
-		{% if venue.past_shows_count == 1 %}Show{% else %}Shows{% endif %}</h2>
+	<h2 class="monospace">{{ venue.past_events_count }} Past
+		{% if venue.past_events_count == 1 %}Event{% else %}Events{% endif %}</h2>
 	<div class="row">
-		{%for show in venue.past_shows %}
+		{%for event in venue.past_events %}
 		<div class="col-sm-4">
-			<div class="tile tile-show">
-				<img src="{{ show.artist_image_link }}" alt="Show Artist Image" />
-				<h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
-				<h6>{{ show.start_time|datetime('full') }}</h6>
+			<div class="tile tile-event">
+				<img src="{{ event.speaker_image_link }}" alt="Event Speaker Image" />
+				<h5><a href="/speakers/{{ event.speaker_id }}">{{ event.speaker_name }}</a></h5>
+				<h6>{{ event.start_time|datetime('full') }}</h6>
 			</div>
 		</div>
 		{% endfor %}

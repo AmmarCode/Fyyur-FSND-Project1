@@ -55,7 +55,7 @@
             <li>
               {% if (request.endpoint == 'venues') or
                 (request.endpoint == 'search_venues') or
-                (request.endpoint == 'show_venue') %}
+                (request.endpoint == 'event_venue') %}
               <form class="search" method="post" action="/venues/search">
                 <input class="form-control"
                   type="search"
@@ -64,14 +64,14 @@
                   aria-label="Search">
               </form>
               {% endif %}
-              {% if (request.endpoint == 'artists') or
-                (request.endpoint == 'search_artists') or
-                (request.endpoint == 'show_artist') %}
-              <form class="search" method="post" action="/artists/search">
+              {% if (request.endpoint == 'speakers') or
+                (request.endpoint == 'search_speakers') or
+                (request.endpoint == 'event_speaker') %}
+              <form class="search" method="post" action="/speakers/search">
                 <input class="form-control"
                   type="search"
                   name="search_term"
-                  placeholder="Find an artist"
+                  placeholder="Find an speaker"
                   aria-label="Search">
               </form>
               {% endif %}
@@ -79,8 +79,8 @@
           </ul>
           <ul class="nav navbar-nav">
             <li {% if request.endpoint == 'venues' %} class="active" {% endif %}><a href="{{ url_for('venues') }}">Venues</a></li>
-            <li {% if request.endpoint == 'artists' %} class="active" {% endif %}><a href="{{ url_for('artists') }}">Artists</a></li>
-            <li {% if request.endpoint == 'shows' %} class="active" {% endif %}><a href="{{ url_for('shows') }}">Shows</a></li>
+            <li {% if request.endpoint == 'speakers' %} class="active" {% endif %}><a href="{{ url_for('speakers') }}">Speakers</a></li>
+            <li {% if request.endpoint == 'events' %} class="active" {% endif %}><a href="{{ url_for('events') }}">Events</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

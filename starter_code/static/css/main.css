@@ -154,21 +154,6 @@ p > i {
 .description {
   max-width: 450px;
 }
-.genres {
-  margin-bottom: 15px;
-}
-span.genre {
-  display: inline-block;
-  font-family: monospace;
-  padding: 4px 8px;
-  background: #f0f0f0;
-  margin: 0 5px 5px 0;
-  border-radius: 3px;
-  color: #676767;
-  font-size: 0.9em;
-  text-transform: uppercase;
-  border: solid 1px #eee;
-}
 .monospace {
   font-family: monospace;
   text-transform: uppercase;

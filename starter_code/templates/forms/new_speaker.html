@@ -1,9 +1,9 @@
 {% extends 'layouts/main.html' %}
-{% block title %}New Artist{% endblock %}
+{% block title %}New Speaker{% endblock %}
 {% block content %}
 <div class="form-wrapper">
   <form method="post" class="form">
-    <h3 class="form-heading">List a new artist<a href="{{ url_for('index') }}" title="Back to homepage"><i
+    <h3 class="form-heading">List a new speaker<a href="{{ url_for('index') }}" title="Back to homepage"><i
           class="fa fa-home pull-right"></i></a></h3>
     <div class="form-group">
       <label for="name">Name</label>
@@ -25,11 +25,6 @@
       {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true) }}
     </div>
     <div class="form-group">
-      <label for="genres">Genres</label>
-      <small>Ctrl+Click to select multiple</small>
-      {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', autofocus = true) }}
-    </div>
-    <div class="form-group">
       <label for="image_link">Image Link</label>
       {{ form.image_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
     </div>
@@ -49,7 +44,7 @@
       <label for="seeking_description">Seeking Description</label>
       {{ form.seeking_description(class_= 'form-control', placeholder='Seeking description', autofocus = true) }}
     </div>
-    <input type="submit" value="Create Venue" class="btn btn-primary btn-lg btn-block">
+    <input type="submit" value="Create Speaker" class="btn btn-primary btn-lg btn-block">
   </form>
 </div>
 {% endblock %}

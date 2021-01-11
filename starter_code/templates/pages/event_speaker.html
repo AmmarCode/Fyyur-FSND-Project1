@@ -1,0 +1,106 @@
+{% extends 'layouts/main.html' %}
+{% block title %}{{ speaker.name }} | Speaker{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-6">
+		<h1 class="monospace">
+			{{ speaker.name }} <a href="{{ url_for('index') }}" title="Back to homepage"><i
+				class="fa fa-home pull-right"></i></a>
+		</h1>
+		<p class="subtitle">
+			ID: {{ speaker.id }}
+		</p>
+		<p>
+			<i class="fas fa-globe-americas"></i> {{ speaker.city }}, {{ speaker.state }}
+		</p>
+		<p>
+			<i class="fas fa-phone-alt"></i> {% if speaker.phone %}{{ speaker.phone }}{% else %}No Phone{% endif %}
+		</p>
+		<p>
+			<i class="fas fa-link"></i> {% if speaker.website %}<a href="{{ speaker.website }}"
+				target="_blank">{{ speaker.website }}</a>{% else %}No Website{% endif %}
+		</p>
+		<p>
+			<i class="fab fa-facebook-f"></i> {% if speaker.facebook_link %}<a href="{{ speaker.facebook_link }}"
+				target="_blank">{{ speaker.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
+		</p>
+		{% if speaker.seeking_venue %}
+		<div class="seeking">
+			<p class="lead">Currently seeking performance venues</p>
+			<div class="description">
+				<i class="fas fa-quote-left"></i> {{ speaker.seeking_description }} <i class="fas fa-quote-right"></i>
+			</div>
+		</div>
+		{% else %}
+		<p class="not-seeking">
+			<i class="fas fa-moon"></i> Not currently seeking performance venues
+		</p>
+		{% endif %}
+	</div>
+	<div class="col-sm-6">
+		<img src="{{ speaker.image_link }}" alt="Venue Image" />
+	</div>
+</div>
+<section>
+	<button id="edit_speaker" onclick="editArtist(event)" class="btn btn-primary btn-lg"
+		data-id="{{ speaker.id }}">Edit</button>
+	<button id="delete_speaker" onclick="deleteArtist(event)" class="btn btn-primary btn-lg"
+		data-id="{{ speaker.id }}">Delete</button>
+</section>
+<section>
+	<h2 class="monospace">{{ speaker.upcoming_events_count }} Upcoming
+		{% if speaker.upcoming_events_count == 1 %}Event{% else %}Events{% endif %}</h2>
+	<div class="row">
+		{%for event in speaker.upcoming_events %}
+		<div class="col-sm-4">
+			<div class="tile tile-event">
+				<img src="{{ event.venue_image_link }}" alt="Event Venue Image" />
+				<h5><a href="/venues/{{ event.venue_id }}">{{ event.venue_name }}</a></h5>
+				<h6>{{ event.start_time|datetime('full') }}</h6>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+<section>
+	<h2 class="monospace">{{ speaker.past_events_count }} Past
+		{% if speaker.past_events_count == 1 %}Event{% else %}Events{% endif %}</h2>
+	<div class="row">
+		{%for event in speaker.past_events %}
+		<div class="col-sm-4">
+			<div class="tile tile-event">
+				<img src="{{ event.venue_image_link }}" alt="Event Venue Image" />
+				<h5><a href="/venues/{{ event.venue_id }}">{{ event.venue_name }}</a></h5>
+				<h6>{{ event.start_time|datetime('full') }}</h6>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+<script>
+	function deleteSpeaker(e) {
+		const id = e.target.dataset.id
+		fetch(`/speaker/${id}`, {
+			method: 'DELETE'
+		})
+			.then(response => {
+				window.location.href = response.url;
+			})
+			.catch(error => {
+				console.log(error);
+			})
+	}
+	function editSpeaker(e) {
+		const id = e.target.dataset.id
+		fetch(`/speakers/${id}/edit`, {
+			method: 'GET'
+		})
+			.then(response => {
+				window.location.href = `/speakers/${id}/edit`;
+			})
+			.catch(error => {
+				console.log(error);
+			})
+	}	
+</script>
+{% endblock %}
