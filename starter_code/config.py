@@ -8,4 +8,4 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 DEBUG = True
 
 # DATABASE URL
-SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+SQLALCHEMY_DATABASE_URI = 'postgres://postgres:0@localhost:5432/fyyur'
