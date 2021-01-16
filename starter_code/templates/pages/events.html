@@ -7,7 +7,7 @@
         <div class="tile tile-event">
             <img src="{{ event.speaker_image_link }}" alt="Speaker Image" />
             <h4>{{ event.start_time|datetime('full') }}</h4>
-            <h5><a href="/speakers/{{ event.speaker_id }}">{{ show.speaker_name }}</a></h5>
+            <h5><a href="/speakers/{{ event.speaker_id }}">{{ event.speaker_name }}</a></h5>
             <p>playing at</p>
             <h5><a href="/venues/{{ event.venue_id }}">{{ event.venue_name }}</a></h5>
         </div>
