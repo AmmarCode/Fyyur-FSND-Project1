@@ -276,7 +276,6 @@ def show_speaker(speaker_id):
         "city": speaker.city,
         "state": speaker.state,
         "phone": speaker.phone,
-        "genres": speaker.genres,
         "image_link": speaker.image_link,
         "facebook_link": speaker.facebook_link,
         "website": speaker.website,
