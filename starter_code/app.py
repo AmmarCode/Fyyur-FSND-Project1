@@ -117,9 +117,9 @@ def event_venue(venue_id):
 
     for event in events:
         data = {
-            "artist_id": event.artist_id,
-            "artist_name": event.artist.name,
-            "artist_image_link": event.artist.image_link,
+            "speaker_id": event.speaker_id,
+            "speaker_name": event.speaker.name,
+            "speaker_image_link": event.speaker.image_link,
             "start_time": format_datetime(str(event.start_time))
         }
         if event.start_time > current_time:
