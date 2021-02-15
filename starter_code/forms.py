@@ -1,10 +1,10 @@
 from datetime import datetime
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import (StringField, SelectField, SelectMultipleField, 
 DateTimeField, BooleanField)
 from wtforms.validators import DataRequired, AnyOf, URL, Length
 
-class EventForm(Form):
+class EventForm(FlaskForm):
     speaker_id = StringField(
         'speaker_id'
     )
@@ -17,7 +17,7 @@ class EventForm(Form):
         default= datetime.today()
     )
 
-class VenueForm(Form):
+class VenueForm(FlaskForm):
     name = StringField(
         'name', validators=[DataRequired()]
     )
@@ -102,7 +102,7 @@ class VenueForm(Form):
         'seeking_description', validators=[Length(max=300)]
     )
 
-class SpeakerForm(Form):
+class SpeakerForm(FlaskForm):
     name = StringField(
         'name', validators=[DataRequired()]
     )
