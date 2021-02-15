@@ -249,7 +249,7 @@ def search_speakers():
 
 
 @app.route('/speakers/<int:speaker_id>')
-def show_speaker(speaker_id):
+def event_speaker(speaker_id):
     # shows the venue page with the given venue_id
     # TODO: replace with real venue data from the venues table, using venue_id
     speaker = Speaker.query.get(speaker_id)
@@ -321,13 +321,14 @@ def edit_speaker(speaker_id):
 @app.route('/speakers/<int:speaker_id>/edit', methods=['POST'])
 def edit_speaker_submission(speaker_id):
     # TODO: take values from the form submitted, and update existing
-    # artist record with ID <artist_id> using the new attributes
+    # speaker record with ID <speaker_id> using the new attributes
     try:
         form = SpeakerForm()
 
         speaker = Speaker.query.get(speaker_id)
+        name = form.name.data
 
-        speaker.name = form.name.data
+        speaker.name = name
         speaker.phone = form.phone.data
         speaker.city = form.city.data
         speaker.state = form.state.data
@@ -338,8 +339,7 @@ def edit_speaker_submission(speaker_id):
         speaker.seeking_description = form.seeking_description.data
 
         db.session.commit()
-        flash('The Speaker ' +
-              request.form['name'] + ' has been successfully updated!')
+        flash('The Speaker ' + name + ' has been successfully updated!')
     except:
         db.session.rolback()
         flash('An Error has occured and the update unsuccessful')
@@ -442,7 +442,7 @@ def create_speaker_submission():
     return render_template('pages/home.html')
 
 
-@app.route('/speaker/<speaker_id>', methods=['DELETE'])
+@app.route('/speaker/<int:speaker_id>', methods=['DELETE'])
 def delete_speaker(speaker_id):
     # TODO: Complete this endpoint for taking a venue_id, and using
     # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
